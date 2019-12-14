@@ -5,7 +5,8 @@ import { actionCreators } from './store';
 
 
 class Header extends Component {
-  getSearchList(isFocus){
+  getSearchList(isFocus, list){
+    console.log('liebiao', list);
     if (isFocus) {
       return (
         <SearchInfo>
@@ -16,9 +17,9 @@ class Header extends Component {
             </span>
           </div>
           <ul className='searchInfoList'>
-            <li className='searchInfoItem'>教育</li>
-            <li className='searchInfoItem'>教育</li>
-            <li className='searchInfoItem'>教育</li>
+          {list.map((item, index) => {
+            return (<li className='searchInfoItem' key={index}>{item}</li>)
+          })}
           </ul>  
         </SearchInfo>
       )
@@ -40,7 +41,7 @@ class Header extends Component {
           <NavWrapper>
             <NavSearch className={this.props.isFocus ? 'focus' : ''} onFocus={this.props.handleFocus} onBlur={this.props.handleBlur}></NavSearch>
             <span className={this.props.isFocus ? 'focus iconfont search' : 'iconfont search'}>&#xe62e;</span>
-            {this.getSearchList(this.props.isFocus)}
+            {this.getSearchList(this.props.isFocus, this.props.list)}
           </NavWrapper>
         </Nav>
         <Addition>
@@ -56,8 +57,10 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    isFocus: state.getIn(['header', 'isFocus'])
+    isFocus: state.getIn(['header', 'isFocus']),
+    list: state.getIn(['header', 'list']),
   }
 }
 

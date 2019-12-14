@@ -3,6 +3,7 @@ import { fromJS } from 'immutable';
 
 const defaultState = fromJS({
   isFocus: false,
+  list: [],
 });
 
 const reducer = (state = defaultState, action) => {
@@ -12,6 +13,9 @@ const reducer = (state = defaultState, action) => {
   }
   if (action.type === constant.BLUR_HANDLE) {
     return state.set('isFocus', false);
+  }
+  if (action.type === constant.GET_SEARCH_LIST) {
+    return state.set('list', action.list);
   }
   return state;
 }
