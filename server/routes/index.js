@@ -1,10 +1,15 @@
-var express = require('express');
-var router = express.Router();
-console.log('yunxing')
+const express = require('express');
+const router = express.Router();
+const hotKey  = require('../model/keyword');
+
 /* GET home page. */
 router.get('/getsearchList', function(req, res, next) {
-  const list = ['教育', '简述', '科技', '教育', '简述', '科技'];
-  res.end(JSON.stringify(list));
+  hotKey.find({}, {_id: 0, id: 0}).then(keys => {
+    console.log('keys', keys);
+    res.json(keys);
+  }).catch((error) => {
+    console.log(error);
+  })
   // res.render('index', { title: 'Express' });
 });
 

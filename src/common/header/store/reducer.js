@@ -15,7 +15,7 @@ const reducer = (state = defaultState, action) => {
     return state.set('isFocus', false);
   }
   if (action.type === constant.GET_SEARCH_LIST) {
-    return state.set('list', action.list);
+    return state.set('list', fromJS(action.list));
   }
   return state;
 }

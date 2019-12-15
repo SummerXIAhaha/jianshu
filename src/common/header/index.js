@@ -18,7 +18,7 @@ class Header extends Component {
           </div>
           <ul className='searchInfoList'>
           {list.map((item, index) => {
-            return (<li className='searchInfoItem' key={index}>{item}</li>)
+            return (<li className='searchInfoItem' key={index}>{item.get('name')}</li>)
           })}
           </ul>  
         </SearchInfo>
@@ -39,7 +39,7 @@ class Header extends Component {
           </NavItem>
           <NavItem className='right'>登陆</NavItem>
           <NavWrapper>
-            <NavSearch className={this.props.isFocus ? 'focus' : ''} onFocus={this.props.handleFocus} onBlur={this.props.handleBlur}></NavSearch>
+            <NavSearch className={this.props.isFocus ? 'focus' : ''} onFocus={this.props.handleFocus.bind(this, this.props.list)} onBlur={this.props.handleBlur}></NavSearch>
             <span className={this.props.isFocus ? 'focus iconfont search' : 'iconfont search'}>&#xe62e;</span>
             {this.getSearchList(this.props.isFocus, this.props.list)}
           </NavWrapper>
@@ -57,7 +57,6 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     isFocus: state.getIn(['header', 'isFocus']),
     list: state.getIn(['header', 'list']),
@@ -66,8 +65,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleFocus() {
-      dispatch(actionCreators.getList());
+    handleFocus(list) {
+      if (!list.size) {
+        dispatch(actionCreators.getList());
+      }
       dispatch(actionCreators.focuseHandle());
     },
     handleBlur() {

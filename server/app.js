@@ -3,9 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-console.log('yunxing');
+var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+const dbName = 'jianshu';
+mongoose.connect(`mongodb://localhost/${dbName}`, {
+  useUnifiedTopology: true, // 对服务器的监视？
+  useNewUrlParser: true  // 因为MongoDB Node.js驱动程序重写了用于解析MongoDB连接字符串的工具。所以启用此选项需要添加该参数
+});
 
 var app = express();
 

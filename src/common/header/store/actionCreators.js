@@ -1,6 +1,6 @@
 
 import * as constant from './constant';
-import axios from 'axios';
+import request from '../../../resource/index';
 
 export const focuseHandle = () => ({
   type: constant.FOCUSE_HANDLE,
@@ -17,14 +17,14 @@ export const getSearchList = (list) => ({
 
 export const getList = () => {
   return (dispatch) => {
-    // axios.get('/getsearchList').then((res) => {
-    //   console.log(res);
-    // })
-    axios({
-      type: 'get',
-      baseURL: 'http://localhost:8080/getsearchList'
-    }).then((res) => {
+    request.get('/getsearchList').then((res) => {
       dispatch(getSearchList(res.data));
     })
+    // axios({
+    //   type: 'get',
+    //   baseURL: 'http://localhost:8080/getsearchList'
+    // }).then((res) => {
+    //   dispatch(getSearchList(res.data));
+    // })
   }
 }
