@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var hotkey = new Schema({
   id: String,
-  className: String,
+  name: String,
 });
 
 var hotkey = mongoose.model('keywords', hotkey);
