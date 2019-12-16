@@ -5,20 +5,41 @@ import { actionCreators } from './store';
 
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 0,
+      mouseIn: false,
+    }
+  }
+
+  handleSwitch(page) {
+    const { totalPage } = this.props;
+    console.log(page, totalPage);
+    if (page < totalPage - 1) {
+      this.setState({page: page + 1});
+    } else {
+      this.setState({page: 0});
+    }
+  }
+
   getSearchList(isFocus, list){
-    console.log('liebiao', list);
-    if (isFocus) {
+    const { mouseIn, page } = this.state;
+    console.log('getSearchList', mouseIn, page);
+    const showList = list.slice(page * 10, (page + 1 ) * 10);
+    console.log('showList', showList);
+    if (isFocus || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo onMouseEnter={() => this.setState({mouseIn: true})} onMouseLeave={() => this.setState({mouseIn: false})}>
           <div className='searchInfoTitle'>
             热门搜索
-            <span className='searchInfoSwitch'>
+            <span className='searchInfoSwitch' onClick={this.handleSwitch.bind(this, page)}>
               <i className="iconfont spin">&#xe772;</i>换一换
             </span>
           </div>
           <ul className='searchInfoList'>
-          {list.map((item, index) => {
-            return (<li className='searchInfoItem' key={index}>{item.get('name')}</li>)
+          {showList.map((item, index) => {
+            return (<li className='searchInfoItem' key={index}>{item.name}</li>)
           })}
           </ul>  
         </SearchInfo>
@@ -28,6 +49,8 @@ class Header extends Component {
   }
 
   render() {
+    const { isFocus, list, handleFocus, handleBlur } = this.props;
+    const listJS = list.toJS();
     return (
       <HeaderWrapper>
         <Logo></Logo>
@@ -39,9 +62,9 @@ class Header extends Component {
           </NavItem>
           <NavItem className='right'>登陆</NavItem>
           <NavWrapper>
-            <NavSearch className={this.props.isFocus ? 'focus' : ''} onFocus={this.props.handleFocus.bind(this, this.props.list)} onBlur={this.props.handleBlur}></NavSearch>
-            <span className={this.props.isFocus ? 'focus iconfont search' : 'iconfont search'}>&#xe62e;</span>
-            {this.getSearchList(this.props.isFocus, this.props.list)}
+            <NavSearch className={isFocus ? 'focus' : ''} onFocus={() => handleFocus(listJS)} onBlur={handleBlur}></NavSearch>
+            <span className={isFocus ? 'focus iconfont search' : 'iconfont search'}>&#xe62e;</span>
+            {this.getSearchList(isFocus, listJS)}
           </NavWrapper>
         </Nav>
         <Addition>
@@ -60,6 +83,7 @@ const mapStateToProps = (state) => {
   return {
     isFocus: state.getIn(['header', 'isFocus']),
     list: state.getIn(['header', 'list']),
+    totalPage: state.getIn(['header', 'totalPage']),
   }
 }
 

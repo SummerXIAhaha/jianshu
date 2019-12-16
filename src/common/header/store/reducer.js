@@ -4,20 +4,24 @@ import { fromJS } from 'immutable';
 const defaultState = fromJS({
   isFocus: false,
   list: [],
+  page: 0,
+  totalPage: 0,
 });
 
 const reducer = (state = defaultState, action) => {
-  if (action.type === constant.FOCUSE_HANDLE) {
-    // immutable调用set方法会返回一个新的对象
-    return state.set('isFocus', true);
+  switch(action.type) {
+    case constant.FOCUSE_HANDLE: 
+      return state.set('isFocus', true);
+    case constant.BLUR_HANDLE:
+      return state.set('isFocus', false);
+    case constant.GET_SEARCH_LIST:
+      return state.merge({
+        list: fromJS(action.list),
+        totalPage: Math.ceil(action.list.length / 10),
+      });  
+    default: 
+      return state;
   }
-  if (action.type === constant.BLUR_HANDLE) {
-    return state.set('isFocus', false);
-  }
-  if (action.type === constant.GET_SEARCH_LIST) {
-    return state.set('list', fromJS(action.list));
-  }
-  return state;
 }
 
 export default reducer;
