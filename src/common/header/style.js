@@ -3,8 +3,8 @@ import LogoPic from '../../statics/img/nav.png';
 
 export const HeaderWrapper = styled.div`
   height: 58px;
-  border-bottom: 1px solod #ccc;
   position: relative;
+  border-bottom: 1px solid #ccc;
 `;
 
 export const Logo = styled.a.attrs({

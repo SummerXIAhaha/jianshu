@@ -13,7 +13,16 @@ class Header extends Component {
     }
   }
 
-  handleSwitch(page) {
+  handleSwitch(page, iconDom) {
+    console.log(iconDom);
+    let dgree = iconDom.style.transform.replace(/[^0-9]/ig, '');
+    if (dgree) {
+      dgree = parseInt(dgree, 10) + 360 ;
+    } else {
+      dgree = 360;
+    }
+    iconDom.style.transform = `rotate(${dgree}deg)`;
+    console.log(dgree);
     const { totalPage } = this.props;
     console.log(page, totalPage);
     if (page < totalPage - 1) {
@@ -33,8 +42,8 @@ class Header extends Component {
         <SearchInfo onMouseEnter={() => this.setState({mouseIn: true})} onMouseLeave={() => this.setState({mouseIn: false})}>
           <div className='searchInfoTitle'>
             热门搜索
-            <span className='searchInfoSwitch' onClick={this.handleSwitch.bind(this, page)}>
-              <i className="iconfont spin">&#xe772;</i>换一换
+            <span className='searchInfoSwitch' onClick={this.handleSwitch.bind(this, page, this.iconDom)}>
+              <i ref={(icon) => {this.iconDom = icon}} className="iconfont spin">&#xe772;</i>换一换
             </span>
           </div>
           <ul className='searchInfoList'>
@@ -90,7 +99,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleFocus(list) {
-      if (!list.size) {
+      if (!list.length) {
         dispatch(actionCreators.getList());
       }
       dispatch(actionCreators.focuseHandle());
