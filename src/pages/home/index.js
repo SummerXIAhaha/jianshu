@@ -9,10 +9,6 @@ import { actionCreators } from './store/index';
 
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getHomeList();
   }

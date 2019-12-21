@@ -3,9 +3,6 @@ import { RecommendWrapper, RecommendItem } from '../style';
 
 
 class Recommend extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <RecommendWrapper>
