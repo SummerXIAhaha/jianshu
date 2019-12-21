@@ -48,9 +48,9 @@ class Header extends Component {
           </div>
           <ul className='searchInfoList'>
           {showList.map((item, index) => {
-            return (<li className='searchInfoItem' key={index}>{item.name}</li>)
+            return (<li className='searchInfoItem' key={index}>{item.title}</li>)
           })}
-          </ul>  
+          </ul>
         </SearchInfo>
       )
     }

@@ -1,12 +1,13 @@
-import React , { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { WriterWrapper } from '../style';
 
+class Writer extends PureComponent {
 
-class Writer extends Component {
-  render() {
-    return (
-      <div>Writer</div>
-    )
-  }
+	render() {
+		return (
+			<WriterWrapper>HomeWork</WriterWrapper>
+		)
+	}
 }
 
 export default Writer;

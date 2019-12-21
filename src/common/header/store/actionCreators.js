@@ -16,7 +16,7 @@ export const blurHandle = () => ({
 
 export const getList = () => {
   return (dispatch) => {
-    request.get('/getsearchList').then((res) => {
+    request.get('/getSearchList').then((res) => {
       dispatch(getSearchList(res.data));
     })
     // axios({

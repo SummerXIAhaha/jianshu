@@ -1,27 +1,50 @@
 import React , { Component } from 'react';
 import { HomeWrapper, HomeLeft, HomeRight } from './style';
+import { connect } from 'react-redux';
 import List from './components/List';
 import Recommend from './components/Recommend';
 import Topic from './components/Topic';
 import Writer from './components/Writer';
+import { actionCreators } from './store/index';
 
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.getHomeList();
+  }
+
   render() {
+    const { articals, topics, recoms } = this.props.homeInfo;
+    console.log(articals, topics, recoms);
     return (
       <HomeWrapper>
         <HomeLeft>
           <img className="banner-img" src="https://upload.jianshu.io/admin_banners/web_images/4824/066b16f3ca11cfb4f2a47b0ecc53010e0e5e5e95.png?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540" alt=""/>
-          <List></List>
-          <Topic></Topic>
+          <Topic topics={topics || []}></Topic>
+          <List articals={articals || []}></List>
         </HomeLeft>
         <HomeRight>
+          <Recommend recoms={recoms || []}></Recommend>
           <Writer></Writer>
-          <Recommend></Recommend>
         </HomeRight>
       </HomeWrapper>
     )
   }
 }
 
-export default Home;
+const mapState = (state) => ({
+  homeInfo: state.toJS().Home.homeInfo
+})
+
+const mapDispatch = (dispatch) => {
+  return {
+    getHomeList () {
+      dispatch(actionCreators.getHomeList())
+    }
+  }
+}
+export default connect(mapState, mapDispatch)(Home);
