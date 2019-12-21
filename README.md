@@ -13,3 +13,5 @@ npm run server
 后台地址： http://localhost:8080 + 接口名
 
 数据库名称：jianshu
+
+太难了 不想写了 难受 一脸蒙 😢😫
