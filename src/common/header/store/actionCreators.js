@@ -1,6 +1,6 @@
 
 import * as constant from './constant';
-import request from '../../../resource/index';
+import request from '@/resource/index';
 
 const getSearchList = (list) => ({
   type: constant.GET_SEARCH_LIST,
