@@ -6,7 +6,9 @@ import { Globalstyle } from './style.js';
 import { Iconstyle } from './statics/iconfont/iconfont';
 import Header from './common/header';
 import Home from './pages/home';
-import Detail from './pages/detail';
+import Detail from './pages/detail/loadable';
+import LoginIn from './pages/loginIn';
+import Write from './pages/write';
 
 function App() {
   return (
@@ -14,10 +16,13 @@ function App() {
       <Globalstyle/>
       <Iconstyle/>
       <Provider store = {store}>
-        <Header></Header>
         <HashRouter>
+          <Header></Header>
           <Route exact path="/" component={Home}></Route>
+          {/* <Route  exact path="/detail/:id" component={Detail}></Route> */}
           <Route  exact path="/detail" component={Detail}></Route>
+          <Route  exact path="/loginIn" component={LoginIn}></Route>
+          <Route  exact path="/write" component={Write}></Route>
         </HashRouter>
       </Provider>
     </div>

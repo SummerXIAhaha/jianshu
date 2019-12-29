@@ -11,6 +11,11 @@ const getHomeInfo = (list) => ({
   list,
 });
 
+const getMoreInfo = (list) => ({
+  type: constant.GET_MORE_LIST,
+  list,
+});
+
 export const getTopicList = () => {
   return (dispatch) => {
     request.get('/getSearchList').then((res) => {
@@ -23,6 +28,14 @@ export const getHomeList = () => {
   return (dispatch) => {
     request.get('/getHomeList').then((res) => {
       dispatch(getHomeInfo(res.data));
+    })
+  }
+}
+
+export const getMoreList = () => {
+  return (dispatch) => {
+    request.get('/getMoreList').then((res) => {
+      dispatch(getMoreInfo(res.data));
     })
   }
 }

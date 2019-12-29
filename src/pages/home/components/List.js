@@ -1,21 +1,45 @@
 import React , { Component } from 'react';
-import { ListItem, ListInfo } from '../style';
+import { Link } from 'react-router-dom';
+import { ListItem, ListInfo, LoadMore } from '../style';
+import { connect } from 'react-redux';
+import { actionCreators } from '../store';
 
 
 class List extends Component {
   render() {
+    const { getMoreList } = this.props;
     return (
-      this.props.articals.map((item, index) => (
-        <ListItem key={index}>
-          <img alt='' className='pic' src={item.img} />
-          <ListInfo>
-            <h3 className='title'>{item.title}</h3>
-            <p className='desc'>{item.description}</p>
-          </ListInfo>
-        </ListItem>
-      ))
+      <div>
+        {this.props.articals.map((item) => (
+          <Link to={`/detail?id=${item._id}`} key={item._id}>
+          {/* <Link to={`/detail/${item._id}`} key={item._id}> */}
+            <ListItem>
+              <img alt='' className='pic' src={item.img} />
+              <ListInfo>
+                <h3 className='title'>{item.title}</h3>
+                <p className='desc'>{item.description}</p>
+              </ListInfo>
+            </ListItem>
+          </Link>
+        ))}
+        <LoadMore onClick={getMoreList}>更多文字</LoadMore>
+      </div>
     )
   }
 }
 
-export default List;
+const mapState = () => {
+  return {
+
+  }
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    getMoreList() {
+      dispatch(actionCreators.getMoreList());
+    }
+  }
+};
+
+export default connect(mapState, mapDispatch)(List);

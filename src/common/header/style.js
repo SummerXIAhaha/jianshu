@@ -7,9 +7,7 @@ export const HeaderWrapper = styled.div`
   border-bottom: 1px solid #ccc;
 `;
 
-export const Logo = styled.a.attrs({
-  href: '/'
-})`
+export const Logo = styled.div`
   height: 58px;
   position: absolute;
   top: 0;
@@ -21,6 +19,7 @@ export const Logo = styled.a.attrs({
 `;
 
 export const NavWrapper = styled.div`
+  z-index: 1;
   position: relative;
   float: left;
   .search {

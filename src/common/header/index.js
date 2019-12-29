@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button, NavWrapper, SearchInfo } from './style';
 import { actionCreators } from './store';
 
@@ -58,18 +59,22 @@ class Header extends Component {
   }
 
   render() {
-    const { isFocus, list, handleFocus, handleBlur } = this.props;
+    const { isFocus, list, handleFocus, handleBlur, login, loginOut } = this.props;
     const listJS = list.toJS();
     return (
       <HeaderWrapper>
-        <Logo></Logo>
+        <Link to='/'>
+          <Logo></Logo>
+        </Link>
         <Nav>
           <NavItem className='left active'>首页</NavItem>
           <NavItem className='left'>下载App</NavItem>
           <NavItem className='right'>
             <span className="iconfont">&#xe636;</span>
           </NavItem>
-          <NavItem className='right'>登陆</NavItem>
+          {
+            login ? <NavItem className='right' onClick={loginOut}>退出</NavItem> : <Link to='/loginIn'><NavItem className='right'>登陆</NavItem></Link>
+          }
           <NavWrapper>
             <NavSearch className={isFocus ? 'focus' : ''} onFocus={() => handleFocus(listJS)} onBlur={handleBlur}></NavSearch>
             <span className={isFocus ? 'focus iconfont search' : 'iconfont search'}>&#xe62e;</span>
@@ -77,10 +82,12 @@ class Header extends Component {
           </NavWrapper>
         </Nav>
         <Addition>
-          <Button className='write'>
-            <span className="iconfont">&#xe62d;</span>
-            写文章
-          </Button>
+          <Link to='/write'>
+            <Button className='write'>
+              <span className="iconfont">&#xe62d;</span>
+              写文章
+            </Button>
+          </Link>
           <Button className='reg'>注册</Button>
         </Addition>
       </HeaderWrapper>
@@ -93,6 +100,7 @@ const mapStateToProps = (state) => {
     isFocus: state.getIn(['header', 'isFocus']),
     list: state.getIn(['header', 'list']),
     totalPage: state.getIn(['header', 'totalPage']),
+    login: state.getIn(['login', 'login'])
   }
 }
 
@@ -106,6 +114,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleBlur() {
       dispatch(actionCreators.blurHandle());
+    },
+    loginOut() {
+      dispatch({
+        type: 'login',
+        login: false
+      })
     }
   }
 }

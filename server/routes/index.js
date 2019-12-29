@@ -16,7 +16,7 @@ router.get('/getSearchList', function(req, res, next) {
 });
 
 router.get('/getHomeList', function(req, res, next) {
-  homeInfo.find({}, {_id: 0}).exec((err, response) => {
+  homeInfo.find({}).exec((err, response) => {
     console.log(err, response);
     const articals = response.filter(item => item.type === '3');
     const topics = response.filter(item => item.type === '1');
@@ -26,6 +26,13 @@ router.get('/getHomeList', function(req, res, next) {
       topics,
       recoms,
     });
+  });
+});
+
+router.get('/getMoreList', function(req, res, next) {
+  homeInfo.find({}).exec((err, response) => {
+    const articals = response.filter(item => item.type === '3');
+    res.json(articals);
   });
 });
 

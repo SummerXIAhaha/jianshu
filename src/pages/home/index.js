@@ -1,5 +1,5 @@
 import React , { Component } from 'react';
-import { HomeWrapper, HomeLeft, HomeRight } from './style';
+import { HomeWrapper, HomeLeft, HomeRight, BackTop } from './style';
 import { connect } from 'react-redux';
 import List from './components/List';
 import Recommend from './components/Recommend';
@@ -9,8 +9,42 @@ import { actionCreators } from './store/index';
 
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showScroll: false,
+    }
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
   componentDidMount() {
     this.props.getHomeList();
+    this.bindEvents();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScrollTop() {
+    window.scrollTo(0, 0);
+  }
+
+  bindEvents() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll() {
+    console.log(document.documentElement.scrollTop);
+    if (document.documentElement.scrollTop > 400) {
+      this.setState({
+        showScroll: true,
+      })
+    } else {
+      this.setState({
+        showScroll: false,
+      })
+    }
   }
 
   render() {
@@ -27,6 +61,7 @@ class Home extends Component {
           <Recommend recoms={recoms || []}></Recommend>
           <Writer></Writer>
         </HomeRight>
+        { this.state.showScroll ? <BackTop onClick={this.handleScrollTop.bind(this)}>回到顶部</BackTop> : ''}
       </HomeWrapper>
     )
   }
