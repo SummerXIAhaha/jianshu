@@ -3,7 +3,7 @@ import { TopicWrapper } from '../style';
 
 
 interface Props {
-  topics: Array<any>;
+  topics: {title: string; img: string}[];
 }
 class Topic extends Component<Props> {
 

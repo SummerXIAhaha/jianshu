@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import { RecommendWrapper, RecommendItem } from '../style';
 
 interface Props {
-  recoms: Array<any>;
+  recoms: {url: string}[];
 }
 class Recommend extends Component<Props> {
   render() {

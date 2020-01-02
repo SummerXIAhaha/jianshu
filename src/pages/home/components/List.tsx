@@ -4,9 +4,12 @@ import { ListItem, ListInfo, LoadMore } from '../style';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 
+interface GetMoreList {
+  (): void
+}
 interface Props {
-  getMoreList: any
-  articals: Array<any>;
+  getMoreList: GetMoreList;
+  articals: {_id: string; img: string; title: string; description: string}[];
 }
 class List extends Component<Props> {
   render() {

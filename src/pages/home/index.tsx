@@ -10,9 +10,9 @@ import { actionCreators } from './store/index';
 interface Props {
   getHomeList: any
   homeInfo: {
-    articals: Array<any>
-    topics: Array<any>
-    recoms: Array<any>
+    articals: []
+    topics: []
+    recoms: []
   }
 }
 

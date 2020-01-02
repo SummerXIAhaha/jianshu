@@ -3,9 +3,12 @@ import { LoginWrapper, LoginBox, Input, Button } from './style';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+// interface Login {
+//   (account: number | string, passworld: number | string) : void
+// }
 interface Props {
   loginStatus: boolean
-  login: any
+  login: (account: number | string, passworld: number | string) => void
 }
 class LoginIn extends Component<Props> {
   account!: string | number
@@ -19,7 +22,7 @@ class LoginIn extends Component<Props> {
       return (
         <LoginWrapper>
           <LoginBox>
-            <Input placeholder='账号' ref={(input) => {this.account = input}}/>
+            <Input placeholder='账号' type='text' ref={(input) => {this.account = input}}/>
             <Input placeholder='密码' type='password' ref={(input) => {this.password = input}}/>
             <Button onClick={() => this.props.login(this.account, this.password)}>登陆</Button>
           </LoginBox>
@@ -35,7 +38,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => {
   return {
-    login(account, password) {
+    login(account: any, password : any): void {
       console.log(account.value, password.value);
       dispatch({
         type: 'login',
