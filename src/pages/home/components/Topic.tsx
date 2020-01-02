@@ -2,7 +2,10 @@ import React , { Component } from 'react';
 import { TopicWrapper } from '../style';
 
 
-class Topic extends Component {
+interface Props {
+  topics: Array<any>;
+}
+class Topic extends Component<Props> {
 
   render() {
     return (

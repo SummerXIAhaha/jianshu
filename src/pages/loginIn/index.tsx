@@ -3,9 +3,13 @@ import { LoginWrapper, LoginBox, Input, Button } from './style';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-
-class LoginIn extends Component {
-
+interface Props {
+  loginStatus: boolean
+  login: any
+}
+class LoginIn extends Component<Props> {
+  account!: string | number
+  password!: string
   render() {
     const { loginStatus } = this.props;
     console.log('loginStatus', loginStatus);

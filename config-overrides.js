@@ -5,6 +5,8 @@ const {
   fixBabelImports,
   addDecoratorsLegacy,
   addBundleVisualizer,
+  // addTslintLoader,
+  // addWebpackModuleRule,
 } = require("customize-cra");
 const path = require('path');
 
@@ -16,6 +18,12 @@ module.exports = override(
   //do stuff with the webpack config...
   //启用ES7的修改器语法（babel 7）
   addDecoratorsLegacy(),
+
+  // 添加tslint-loader
+  // addTslintLoader(),
+
+
+  // addWebpackModuleRule({test: /\.tsx$/, use: 'ts-loader'}),
 
 
   //配置别名
@@ -46,4 +54,9 @@ module.exports = override(
       processor.options.sourceMap = true; // sass-loader
     }
   }),
+  config => {
+     // 自定义设置
+    console.log(config);
+    return config;
+  }
 )

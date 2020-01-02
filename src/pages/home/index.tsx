@@ -7,8 +7,20 @@ import Topic from './components/Topic';
 import Writer from './components/Writer';
 import { actionCreators } from './store/index';
 
+interface Props {
+  getHomeList: any
+  homeInfo: {
+    articals: Array<any>
+    topics: Array<any>
+    recoms: Array<any>
+  }
+}
 
-class Home extends Component {
+interface State {
+  showScroll: boolean
+}
+
+class Home extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {

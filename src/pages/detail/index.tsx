@@ -1,9 +1,17 @@
 import React , { Component } from 'react';
 import { DetailWrapper, Header, Content } from './style';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
+interface Props {
+  location: any;
+}
 
-class Detail extends Component {
+interface State {
+  title: string
+  content: string
+}
+
+class Detail extends Component<Props & RouteComponentProps ,State> {
   constructor(props) {
     super(props);
     this.state = {

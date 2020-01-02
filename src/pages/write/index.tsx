@@ -2,8 +2,11 @@ import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+interface Props {
+  login: boolean
+}
 
-class Write extends Component {
+class Write extends Component<Props> {
 
   render() {
     return (

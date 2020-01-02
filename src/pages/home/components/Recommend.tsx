@@ -1,8 +1,10 @@
 import React , { Component } from 'react';
 import { RecommendWrapper, RecommendItem } from '../style';
 
-
-class Recommend extends Component {
+interface Props {
+  recoms: Array<any>;
+}
+class Recommend extends Component<Props> {
   render() {
     return (
       <RecommendWrapper>

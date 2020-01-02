@@ -1,5 +1,5 @@
 import * as constant from './constant';
-import request from '@/resource/index';
+import request from '../../../resource/index';
 
 const getTopics = (list) => ({
   type: constant.GET_TOPICS,

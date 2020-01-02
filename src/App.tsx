@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import { Provider } from 'react-redux';
 import {HashRouter, Route} from 'react-router-dom';
 import store from './store';
-import { Globalstyle } from './style.js';
+import { Globalstyle } from './style';
 import { Iconstyle } from './statics/iconfont/iconfont';
 import Header from './common/header';
 import Home from './pages/home';

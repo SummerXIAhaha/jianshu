@@ -4,8 +4,11 @@ import { ListItem, ListInfo, LoadMore } from '../style';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 
-
-class List extends Component {
+interface Props {
+  getMoreList: any
+  articals: Array<any>;
+}
+class List extends Component<Props> {
   render() {
     const { getMoreList } = this.props;
     return (
