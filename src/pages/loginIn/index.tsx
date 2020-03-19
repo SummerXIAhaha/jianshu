@@ -2,6 +2,7 @@ import React , { Component } from 'react';
 import { LoginWrapper, LoginBox, Input, Button } from './style';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { actionCreators } from './store/index';
 
 // interface Login {
 //   (account: number | string, passworld: number | string) : void
@@ -40,11 +41,14 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
   return {
     login(account: any, password : any): void {
-      console.log('1111', account.value, password.value);
-      dispatch({
-        type: 'login',
-        login: true,
-      });
+      dispatch(actionCreators.loginIn({
+        account: account.value,
+        password: password.value,
+      }))
+      // dispatch({
+      //   type: 'login',
+      //   login: true,
+      // });
     }
   }
 }

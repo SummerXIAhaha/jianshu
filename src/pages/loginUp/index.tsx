@@ -50,6 +50,7 @@ class LoginUp extends Component<LoginUpProps, LoginUpState> {
       return;
     }
     request.post('/users/loginUp', { account, password, emailAddress }).then((res) => {
+      console.log(res);
       if (res.successFlag !== 'Y') {
         Toast.info(res.msg);
       } else {
