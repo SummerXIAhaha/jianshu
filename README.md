@@ -17,3 +17,5 @@ npm run server
 太难了 不想写了 难受 一脸蒙 😢😫
 
 package.json 里面配置 "homepage": "." 生产地址才能正常访问
+
+想要增加动画路由，但是被ts上的报错打败了。。。。
