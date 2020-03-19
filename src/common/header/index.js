@@ -65,9 +65,10 @@ class Header extends Component {
       <HeaderWrapper>
         <Link to='/'>
           <Logo></Logo>
-        </Link>
-        <Nav>
-          <NavItem className='left active'>首页</NavItem>
+        </Link>        <Nav>
+          <Link to='/'>
+            <NavItem className='left active'>首页</NavItem>
+          </Link>
           <NavItem className='left'>下载App</NavItem>
           <NavItem className='right'>
             <span className="iconfont">&#xe636;</span>
@@ -88,7 +89,9 @@ class Header extends Component {
               写文章
             </Button>
           </Link>
-          <Button className='reg'>注册</Button>
+          <Link to='/loginUp'>
+            <Button className='reg'>注册</Button>
+          </Link>
         </Addition>
       </HeaderWrapper>
     )
@@ -120,7 +123,7 @@ const mapDispatchToProps = (dispatch) => {
         type: 'login',
         login: false
       })
-    }
+    },
   }
 }
 

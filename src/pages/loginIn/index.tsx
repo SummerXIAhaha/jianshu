@@ -24,6 +24,7 @@ class LoginIn extends Component<Props> {
           <LoginBox>
             <Input placeholder='账号' type='text' ref={(input) => {this.account = input}}/>
             <Input placeholder='密码' type='password' ref={(input) => {this.password = input}}/>
+            <span>忘记密码</span>
             <Button onClick={() => this.props.login(this.account, this.password)}>登陆</Button>
           </LoginBox>
         </LoginWrapper>
@@ -39,7 +40,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
   return {
     login(account: any, password : any): void {
-      console.log(account.value, password.value);
+      console.log('1111', account.value, password.value);
       dispatch({
         type: 'login',
         login: true,

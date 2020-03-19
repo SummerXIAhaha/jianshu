@@ -8,7 +8,6 @@ export const LoginWrapper = styled.div`
 	bottom: 0;
 	top: 56px;
 	background: #eee;
-  text-align: center;
 `;
 
 export const LoginBox = styled.div`

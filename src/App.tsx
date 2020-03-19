@@ -9,6 +9,8 @@ import Home from './pages/home';
 import Detail from './pages/detail/loadable';
 import LoginIn from './pages/loginIn';
 import Write from './pages/write';
+import LoginUp from './pages/loginUp';
+// import Router from './route';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route  exact path="/detail" component={Detail}></Route>
           <Route  exact path="/loginIn" component={LoginIn}></Route>
           <Route  exact path="/write" component={Write}></Route>
+          <Route  exact path="/loginUp" component={LoginUp}></Route>
+          {/* <Router /> */}
         </HashRouter>
       </Provider>
     </div>

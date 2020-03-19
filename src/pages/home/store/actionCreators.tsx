@@ -18,8 +18,8 @@ const getMoreInfo = (list) => ({
 
 export const getTopicList = () => {
   return (dispatch) => {
-    request.get('/getSearchList').then((res) => {
-      dispatch(getTopics(res.data));
+    request['get']('/getSearchList').then((res) => {
+      dispatch(getTopics(res));
     })
   }
 }
@@ -27,7 +27,7 @@ export const getTopicList = () => {
 export const getHomeList = () => {
   return (dispatch) => {
     request.get('/getHomeList').then((res) => {
-      dispatch(getHomeInfo(res.data));
+      dispatch(getHomeInfo(res));
     })
   }
 }
@@ -35,7 +35,7 @@ export const getHomeList = () => {
 export const getMoreList = () => {
   return (dispatch) => {
     request.get('/getMoreList').then((res) => {
-      dispatch(getMoreInfo(res.data));
+      dispatch(getMoreInfo(res));
     })
   }
 }

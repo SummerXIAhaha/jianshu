@@ -34,12 +34,6 @@ class List extends Component<Props> {
   }
 }
 
-const mapState = () => {
-  return {
-
-  }
-};
-
 const mapDispatch = (dispatch) => {
   return {
     getMoreList() {
@@ -48,4 +42,4 @@ const mapDispatch = (dispatch) => {
   }
 };
 
-export default connect(mapState, mapDispatch)(List);
+export default connect(null, mapDispatch)(List);
